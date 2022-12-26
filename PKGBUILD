@@ -5,12 +5,12 @@
 # Bob Fanger <bfanger(at)gmail>
 # Filip <fila pruda com>, Det <nimetonmaili(at)gmail>
 
-_linuxprefix=linux61
-_extramodules=extramodules-6.1-MANJARO
+_linuxprefix=linux62
+_extramodules=extramodules-6.2-MANJARO
 pkgname=$_linuxprefix-r8168
 _pkgname=r8168
 pkgver=8.050.03
-pkgrel=2
+pkgrel=0.1
 pkgdesc="A kernel module for Realtek 8168 network cards"
 url="http://www.realtek.com.tw"
 license=("GPL")
