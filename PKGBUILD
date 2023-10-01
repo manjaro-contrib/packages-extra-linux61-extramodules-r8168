@@ -9,8 +9,8 @@ _linuxprefix=linux61
 _extramodules=extramodules-6.1-MANJARO
 pkgname=$_linuxprefix-r8168
 _pkgname=r8168
-pkgver=8.051.02
-pkgrel=5
+pkgver=8.052.01
+pkgrel=1
 pkgdesc="A kernel module for Realtek 8168 network cards"
 arch=('x86_64')
 url="http://www.realtek.com.tw"
@@ -21,16 +21,13 @@ makedepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
 install=$_pkgname.install
 source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$_pkgname-$pkgver.tar.gz"
-        "https://github.com/mtorromeo/r8168/releases/download/$pkgver/$_pkgname-$pkgver.tar.gz.asc"
-        'linux61.patch')
-sha256sums=('76f1c6f0b273d6a31bdb3e98c39a54f50a65766b99d485f9b4ddeda30dcd11d8'
-            'SKIP'
-            'b43a2ec8270124afe6fa23fafc1be156779e9a0d47db22e1583b60891bd286d5')
+        "https://github.com/mtorromeo/r8168/releases/download/$pkgver/$_pkgname-$pkgver.tar.gz.asc")
+sha256sums=('cd8ee58a260e9b654080d39e3a42e3a3fb821041ee79e631b4647d84120aa999'
+            'SKIP')
 validpgpkeys=('0CADAACF70F64C654E131B3111675C743429DDEF') # Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
 
 prepare() {
   cd "$_pkgname-$pkgver"
-  patch -p1 -i ../linux61.patch
 }
 
 build() {
