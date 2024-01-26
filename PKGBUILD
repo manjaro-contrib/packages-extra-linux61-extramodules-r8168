@@ -6,7 +6,7 @@
 # Filip <fila pruda com>, Det <nimetonmaili(at)gmail>
 
 _linuxprefix=linux61
-_extramodules=extramodules-6.1-MANJARO
+_kernver="$(cat /usr/src/${_linuxprefix}/version)"
 pkgname=$_linuxprefix-r8168
 _pkgname=r8168
 pkgver=8.052.01
@@ -19,7 +19,6 @@ groups=("$_linuxprefix-extramodules")
 depends=('glibc' "$_linuxprefix")
 makedepends=("$_linuxprefix-headers")
 provides=("$_pkgname=$pkgver")
-install=$_pkgname.install
 source=("https://github.com/mtorromeo/r8168/archive/$pkgver/$_pkgname-$pkgver.tar.gz"
         "https://github.com/mtorromeo/r8168/releases/download/$pkgver/$_pkgname-$pkgver.tar.gz.asc")
 sha256sums=('cd8ee58a260e9b654080d39e3a42e3a3fb821041ee79e631b4647d84120aa999'
@@ -31,7 +30,6 @@ prepare() {
 }
 
 build() {
-  _kernver="$(cat /usr/lib/modules/$_extramodules/version || true)"
 
   cd "$_pkgname-$pkgver"
 
@@ -50,14 +48,11 @@ build() {
 
 package() {
   cd "$_pkgname-$pkgver"
-  install -Dm644 src/*.ko -t "$pkgdir/usr/lib/modules/$_extramodules/"
+  install -Dm644 src/*.ko -t "$pkgdir/usr/lib/modules/${_kernver}/extramodules/"
   find "$pkgdir" -name '*.ko' -exec strip --strip-debug {} +
   find "$pkgdir" -name '*.ko' -exec xz {} +
 
 # We'll let mhwd-db handle blacklisting for now
 #  echo "blacklist r8169" | \
 #    install -Dm644 /dev/stdin "$pkgdir/usr/lib/modprobe.d/$pkgname.conf"
-
-  # set the kernel we've built for inside the install script
-  sed -i -e "s/EXTRAMODULES=.*/EXTRAMODULES=${_extramodules}/g" "${startdir}/${_pkgname}.install"
 }
