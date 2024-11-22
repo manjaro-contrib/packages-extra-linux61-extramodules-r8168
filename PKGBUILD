@@ -1,22 +1,17 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 # Maintainer: Bernhard Landauer <bernhard@manjaro.org>
-
-# Arch credits:
-# Based on the file created for Arch Linux by:
-# Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
-# Bob Fanger <bfanger(at)gmail>
-# Filip <fila pruda com>, Det <nimetonmaili(at)gmail>
+# Contributor: Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
 
 _linuxprefix=linux61
 
 _module=r8168
 pkgname="${_linuxprefix}-${_module}"
 pkgver=8.054.00
-pkgrel=5
+pkgrel=6
 pkgdesc="A kernel module for Realtek 8168 network cards"
 arch=('x86_64')
 url="http://www.realtek.com.tw"
-license=("GPL")
+license=("GPL-2.0-only")
 groups=("${_linuxprefix}-extramodules")
 depends=('glibc' "${_linuxprefix}")
 makedepends=("${_linuxprefix}-headers")
@@ -54,7 +49,7 @@ package() {
   cd "${_module}-$pkgver"
   install -Dm644 src/*.ko -t "$pkgdir/usr/lib/modules/${_kernver}/extramodules/"
   find "$pkgdir" -name '*.ko' -exec strip --strip-debug {} +
-  find "$pkgdir" -name '*.ko' -exec xz {} +
+  find "$pkgdir" -name '*.ko' -exec zstd --rm -19 {} +
 
 # We'll let mhwd-db handle blacklisting for now
 #  echo "blacklist r8169" | \
