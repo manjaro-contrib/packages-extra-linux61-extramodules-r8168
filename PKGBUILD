@@ -7,7 +7,7 @@ _linuxprefix=linux61
 _module=r8168
 pkgname="${_linuxprefix}-${_module}"
 pkgver=8.054.00
-pkgrel=7
+pkgrel=8
 pkgdesc="A kernel module for Realtek 8168 network cards"
 arch=('x86_64')
 url="http://www.realtek.com.tw"
@@ -15,6 +15,7 @@ license=("GPL-2.0-only")
 groups=("${_linuxprefix}-extramodules")
 depends=('glibc' "${_linuxprefix}")
 makedepends=("${_linuxprefix}-headers")
+provides=("${_module}")
 source=("https://github.com/mtorromeo/r8168/archive/$pkgver/${_module}-$pkgver.tar.gz"
         "https://github.com/mtorromeo/r8168/releases/download/$pkgver/${_module}-$pkgver.tar.gz.asc")
 sha256sums=('a1327ab43ac9537a030c0c7f60a4d2a3d8d4f7aa932f2fae5271f16fe77a8f2c'
