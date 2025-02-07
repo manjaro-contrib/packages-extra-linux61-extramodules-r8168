@@ -10,7 +10,7 @@ pkgver=8.054.00
 pkgrel=18
 pkgdesc="A kernel module for Realtek 8168 network cards"
 arch=('x86_64')
-url="http://www.realtek.com.tw"
+url="https://www.realtek.com/Download/List?cate_id=584"
 license=("GPL-2.0-only")
 groups=("${_linuxprefix}-extramodules")
 depends=('glibc' "${_linuxprefix}")
