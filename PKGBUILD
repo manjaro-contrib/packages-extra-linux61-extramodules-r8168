@@ -7,7 +7,7 @@ _linuxprefix=linux61
 _module=r8168
 pkgname="${_linuxprefix}-${_module}"
 pkgver=8.055.00
-pkgrel=1
+pkgrel=2
 pkgdesc="A kernel module for Realtek 8168 network cards"
 arch=('x86_64')
 url="https://www.realtek.com/Download/List?cate_id=584"
